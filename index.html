@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+
+    <title>last task</title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <script type="text/javascript" src="./jquery.min.js"></script>
+
+
+    <style type="text/css">
+        .buttons {
+            height: 400px;
+            position: relative;
+        }
+
+        .buttons[data-state="0"] button.first {
+            transform: translate3d(-50%, 0, 0);
+        }
+        .buttons[data-state="0"] button.second {
+            transform: translate3d(-50%, 60px, 0);
+        }
+        .buttons[data-state="0"] button.third {
+            transform: translate3d(-50%, 120px, 0);
+        }
+
+        .buttons[data-state="1"] button.first {
+            transform: translate3d(-50%, 120px, 0);
+        }
+        .buttons[data-state="1"] button.second {
+            transform: translate3d(-50%, 0, 0);
+        }
+        .buttons[data-state="1"] button.third {
+            transform: translate3d(-50%, 60px, 0);
+        }
+
+        .buttons[data-state="2"] button.first {
+            transform: translate3d(-50%, 60px, 0);
+        }
+        .buttons[data-state="2"] button.second {
+            transform: translate3d(-50%, 120px, 0);
+        }
+        .buttons[data-state="2"] button.third {
+            transform: translate3d(-50%, 0, 0);
+        }
+
+
+        button {
+            position: absolute;
+            transform: translate3d(-50%, 0, 0);
+            transition: all 0.5s;
+            top: 50px;
+            left: 50%;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-size: 18px;
+            border: 1px solid transparent;
+            outline: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        button.first {
+            border-color: lightsteelblue;
+            color: lightsteelblue;
+        }
+
+        button.second {
+            border-color: lightseagreen;
+            color: lightseagreen;
+        }
+
+        button.third {
+            border-color: lightcoral;
+            color: lightcoral;
+        }
+
+    </style>
+</head>
+<body>
+<div class="buttons" data-state="0">
+
+    <button type="button" data-button class="first">1</button>
+
+
+    <button type="button" data-button class="second">2</button>
+
+
+    <button type="button" data-button class="third">3</button>
+
+</div>
+
+<script>
+    $(function () {
+        const $button = $('[data-button]');
+
+        $button.on('click', function () {
+            let $this = $(this);
+            let $parent = $this.parent();
+            let state = $parent.attr('data-state') + 1;
+            let nextState = state % 3;
+
+            $parent.attr('data-state', nextState);
+
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
