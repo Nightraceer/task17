@@ -12,51 +12,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
     <script type="text/javascript" src="./jquery.min.js"></script>
+    <script type="text/javascript" src="./buttons_move.js"></script>
 
 
     <style type="text/css">
         .buttons {
-            height: 400px;
-            position: relative;
-        }
-
-        .buttons[data-state="0"] button.first {
-            transform: translate3d(-50%, 0, 0);
-        }
-        .buttons[data-state="0"] button.second {
-            transform: translate3d(-50%, 60px, 0);
-        }
-        .buttons[data-state="0"] button.third {
-            transform: translate3d(-50%, 120px, 0);
-        }
-
-        .buttons[data-state="1"] button.first {
-            transform: translate3d(-50%, 120px, 0);
-        }
-        .buttons[data-state="1"] button.second {
-            transform: translate3d(-50%, 0, 0);
-        }
-        .buttons[data-state="1"] button.third {
-            transform: translate3d(-50%, 60px, 0);
-        }
-
-        .buttons[data-state="2"] button.first {
-            transform: translate3d(-50%, 60px, 0);
-        }
-        .buttons[data-state="2"] button.second {
-            transform: translate3d(-50%, 120px, 0);
-        }
-        .buttons[data-state="2"] button.third {
-            transform: translate3d(-50%, 0, 0);
+            padding-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
 
         button {
-            position: absolute;
-            transform: translate3d(-50%, 0, 0);
-            transition: all 0.5s;
-            top: 50px;
-            left: 50%;
             -webkit-appearance: none;
             -moz-appearance: none;
             padding: 10px 30px;
@@ -86,7 +54,7 @@
     </style>
 </head>
 <body>
-<div class="buttons" data-state="0">
+<div class="buttons">
 
     <button type="button" data-button class="first">1</button>
 
@@ -100,18 +68,11 @@
 
 <script>
     $(function () {
-        const $button = $('[data-button]');
 
-        $button.on('click', function () {
-            let $this = $(this);
-            let $parent = $this.parent();
-            let state = $parent.attr('data-state') + 1;
-            let nextState = state % 3;
-
-            $parent.attr('data-state', nextState);
-
-            return false;
+        $('body').buttons_move({
+            direction: 'back'
         });
+
     });
 </script>
 </body>
